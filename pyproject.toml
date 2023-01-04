@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "backend-shop"
+version = "0.1.0"
+description = ""
+authors = ["q0tik <maksim.topchilo@quot.tech>"]
+readme = "README.md"
+packages = [{include = "backend_shop"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.88.0"
+loguru = "^0.6.0"
+pytest = "^7.2.0"
+pep8 = "^1.7.1"
+pylint = "^2.15.9"
+flake8 = "^6.0.0"
+mypy = "^0.991"
+uvicorn = "^0.20.0"
+aiofiles = "^22.1.0"
+pydantic-yaml = "^0.8.1"
+pyyaml = "^6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
