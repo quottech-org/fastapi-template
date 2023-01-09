@@ -1,16 +1,15 @@
 [tool.poetry]
-name = "backend-shop"
+name = "ub_backend"
 version = "0.1.0"
 description = ""
 authors = ["q0tik <maksim.topchilo@quot.tech>"]
 readme = "README.md"
-packages = [{include = "backend_shop"}]
+packages = [{include = "ub_backend"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 fastapi = "^0.88.0"
 loguru = "^0.6.0"
-pytest = "^7.2.0"
 pep8 = "^1.7.1"
 pylint = "^2.15.9"
 flake8 = "^6.0.0"
@@ -19,6 +18,18 @@ uvicorn = "^0.20.0"
 aiofiles = "^22.1.0"
 pydantic-yaml = "^0.8.1"
 pyyaml = "^6.0"
+httpx = "^0.23.3"
+asgi-lifespan = "^2.0.0"
+pytest = "^7.2.0"
+alembic = "^1.9.1"
+sqlalchemy = "^1.4.46"
+asyncpg = "^0.27.0"
+psycopg2-binary = "^2.9.5"
+pytest-asyncio = "^0.20.3"
+greenlet = "^2.0.1"
+beautifulsoup4 = "^4.11.1"
+requests = "^2.28.1"
+requests-html = "^0.10.0"
 
 
 [build-system]

@@ -1,0 +1,46 @@
+version: "3.6"
+
+services:
+  postgres:
+    build:
+      context: deployment/postgresql
+      dockerfile: Dockerfile
+    hostname: postgres
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready --host=localhost --port=5432 --username=user --dbname=test" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 5438:5432
+    volumes:
+      - ./deployment/postgresql/.pgdata:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  ub_backend:
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: deployment/ub_backend/Dockerfile
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/code/
+    environment:
+      PYTHONPATH: /code/
+      CONF_PATH: /code/config/config.dev.yml
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"
+volumes:
+  db-data:
+    driver: local
