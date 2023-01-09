@@ -1,29 +1,32 @@
-import uvicorn
 from fastapi import FastAPI
 
+from .config import app_config
 
 def init_middlewares(app: FastAPI) -> None:
     # app.add_middleware()
     pass
 
 
-def init_routers(app: FastAPI) -> None:
+def init_routes(app: FastAPI) -> None:
     # app.include_router()
     pass
 
 
 def build_fastapi_app() -> FastAPI:
     app = FastAPI(
-        title="FastAPI",
-        description="",
-        version="0.1.0",
-    ) # TODO: load from config
+        title=app_config.profile.title,
+        description=app_config.profile.description,
+        version=app_config.profile.version,
+    )
 
     init_middlewares(app)
-
+    init_routes(app)
+    
     return app
 
 
 if __name__ == "__main__":
+    import uvicorn
+
     app: FastAPI = build_fastapi_app()
     uvicorn.run(app, host="0.0.0.0", port=8000)  # TODO: from config

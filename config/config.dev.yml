@@ -1,0 +1,18 @@
+enviroment: dev
+
+profile:
+  title: backend-app
+  description: UncleBeso's ECommerce backend app
+  version: 0.1.0
+
+postgres:
+  host: "host.docker.internal"
+  port: 5438
+  user: user
+  password: password
+  db_name: test
+
+jwt:
+  secret: 4b6c67a7-3920-47b2-b9ce-7156486f8448
+  access_expiration_time: 30
+  refresh_expiration_time: 3600

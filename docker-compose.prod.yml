@@ -1,0 +1,14 @@
+version: "3.6"
+
+services:
+  ub-backend:
+    build:
+      context: .
+      dockerfile: docker/ub-backend/Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/code/
+    environment:
+      PYTHONPATH: /code/
+      CONF_PATH: /code/config/config.prod.yml
