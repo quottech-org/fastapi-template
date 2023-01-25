@@ -14,7 +14,9 @@ jobs:
       run: make build_dev
     - name: run db
       run: make run_db
-    - name: list dir
+    - name: list dir os
+      run: ls -la
+    - name: list dir docker
       run: make ls
     - name: run tests
       run: make tests
