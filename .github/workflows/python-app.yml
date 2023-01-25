@@ -8,11 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: chckout repo
+    - name: checkout repo
       uses: actions/checkout@v2
     - name: build app
       run: make build_dev
     - name: run db
       run: make run_db
+    - name: list dir
+      run: make ls
     - name: run tests
       run: make tests
