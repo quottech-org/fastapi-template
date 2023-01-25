@@ -50,7 +50,7 @@ run_db:
 	docker-compose -f docker-compose.dev.yml up --build -d postgres
 
 start_test_docker:
-	docker-compose -f docker-compose.dev.yml run --rm -e SQLALCHEMY_WARN_20=1 -e CONF_PATH=/code/config/config.dev.yml ub_backend pytest -v tests/$$n -x
+	docker-compose -f docker-compose.dev.yml run --rm -e SQLALCHEMY_WARN_20=1 -e CONF_PATH=/code/config/config.dev.yml ub_backend pytest -v /code/tests/$$n -x
 
 clean_images:
 	docker image prune -a -f
