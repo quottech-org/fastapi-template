@@ -2,14 +2,15 @@ from fastapi import FastAPI
 
 from .config import app_config
 
+
 def init_middlewares(app: FastAPI) -> None:
     # app.add_middleware()
     pass
 
 
 def init_routes(app: FastAPI) -> None:
-    # app.include_router()
-    pass
+    from ub_backend.api.routes import v1_router
+    app.include_router(prefix="/api", router=v1_router)
 
 
 def build_fastapi_app() -> FastAPI:

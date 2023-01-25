@@ -44,6 +44,12 @@ class JWT(BaseModel):
     secret: UUID
     access_expiration_time: int
     refresh_expiration_time: int
+    prefix: str
+
+
+class Telegram(BaseModel):
+    bot_token: str
+    alert_order_create_chats: List[int]
 
 
 class AppConfig(BaseModel):
@@ -51,6 +57,7 @@ class AppConfig(BaseModel):
     profile: Profile
     postgres: Postgresql
     jwt: JWT
+    telegram: Telegram
 
     @classmethod
     async def from_yaml_file(cls, config_path: str) -> "AppConfig":

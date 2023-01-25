@@ -1,14 +1,15 @@
-from uuid import uuid4
+from typing import Union
+from datetime import datetime
 
+from sqlalchemy.ext.asyncio import async_scoped_session
+from sqlalchemy import text
+from sqlalchemy.orm import Session
 import pytest
 
 
 @pytest.mark.asyncio
-async def test_db_transactions():
-    from ub_backend.database.postgres.db import session, set_session_context
-    set_session_context(f"test_{uuid4()}")
-    async with session() as session_:
-        time = (await session_.execute("SELECT * FROM user")).scalars().first()
-        print(time)
-    assert time is not None
+async def test_db_get_time(fx_db: Union[Session, async_scoped_session]):
+
+    time = (await fx_db.execute(text('SELECT * FROM now()'))).scalars().first()
+    assert isinstance(time, datetime)
     
