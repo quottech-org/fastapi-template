@@ -10,7 +10,13 @@ from ub_backend.database.postgres.sqlalchemy_models.user import DBUser
 
 
 @pytest.mark.asyncio
-async def test_create_order(fx_client: AsyncClient, fx_access_token, fx_db_user: DBUser, fx_db_good_factory):
+async def test_create_order(
+    fx_client: AsyncClient, 
+    fx_access_token, 
+    fx_db_user: DBUser, 
+    fx_db_good_factory,
+    telegram_service_mock,
+):
     goods = [
         {
             "title": "CAUCASIAN [DALI]",

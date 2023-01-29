@@ -6,6 +6,7 @@ from os import environ
 import random
 import string
 from typing import Any, Dict, Union
+from unittest import mock
 from uuid import uuid4
 
 from fastapi import FastAPI
@@ -16,6 +17,8 @@ from pytest_asyncio import fixture as async_fixture
 from sqlalchemy.ext.asyncio import async_scoped_session
 from sqlalchemy.orm import Session
 
+from ub_backend.core.logger import logger
+from ub_backend.app.service.telegram_service import telegram_service
 from ub_backend.core.config import app_config
 from ub_backend.database.postgres.db import session
 from ub_backend.database.postgres.sqlalchemy_models.good import DBGood
@@ -137,3 +140,13 @@ async def fx_db_good_factory(fx_client: AsyncClient):
         )
         return DBGood(**response.json())
     return create_good
+
+
+@pytest.fixture(scope="session")
+def telegram_service_mock():
+    with mock.patch.object(telegram_service, "send_message") as mock_:
+        x = mock_.call_args
+        async def mock_send_message(self, user_id: int, text: str, disable_notification: bool = False):
+            logger.info(f"Telegram sent message to {user_id} with text: {text}")
+            return True
+        yield mock_send_message
