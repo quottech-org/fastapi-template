@@ -1,6 +1,7 @@
+import aiohttp
 from fastapi import Depends, Header
-from ub_backend.app.exception.common import UnauthorizedException
 
+from ub_backend.app.exception.common import UnauthorizedException
 from ub_backend.app.model.token import AccessToken
 from ub_backend.app.service.jwt_service import jwt_service
 from ub_backend.database.postgres.db import get_db
@@ -9,6 +10,10 @@ from ub_backend.database.postgres.storage.order_storage import PGOrderStorage
 from ub_backend.database.postgres.storage.token_storage import PGTokenStorage
 from ub_backend.database.postgres.storage.user_storage import PGUserStorage
 
+
+async def http_client():
+    async with aiohttp.ClientSession() as session:
+        yield session
 
 async def access_token(authorization=Header(...)) -> AccessToken:
     token = jwt_service.decode_access_token(authorization)

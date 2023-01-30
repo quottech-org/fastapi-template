@@ -33,7 +33,7 @@ clean:
 	docker volume prune
 
 run_prod:
-	docker-compose -f docker-compose.prod.yml up -d 
+	docker-compose -f docker-compose.prod.yml up 
 
 build_prod:
 	docker-compose -f docker-compose.prod.yml build --no-cache

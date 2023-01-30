@@ -9,8 +9,8 @@ def init_middlewares(app: FastAPI) -> None:
 
 
 def init_routes(app: FastAPI) -> None:
-    from ub_backend.api.routes import v1_router
-    app.include_router(prefix="/api", router=v1_router)
+    from ub_backend.api.routes import router as api_router
+    app.include_router(router=api_router)
 
 
 def build_fastapi_app() -> FastAPI:
