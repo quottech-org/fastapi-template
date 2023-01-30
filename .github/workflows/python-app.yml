@@ -5,14 +5,14 @@ on:
   - pull_request
 
 jobs:
-  build:
+  testing:
     runs-on: ubuntu-latest
     steps:
-    - name: chckout repo
+    - name: checkout repo
       uses: actions/checkout@v2
     - name: build app
       run: make build_dev
-    - name: run db
-      run: make run_db
+    # - name: run db
+    #   run: make run_db
     - name: run tests
-      run: make tests
+      run: make test

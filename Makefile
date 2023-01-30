@@ -32,8 +32,8 @@ _down_docker_prod:
 clean:
 	docker volume prune
 
-run_prod:
-	docker-compose -f docker-compose.prod.yml up -d
+run_prod
+	docker-compose -f docker-compose.prod.yml up -d 
 
 build_prod:
 	docker-compose -f docker-compose.prod.yml build --no-cache
@@ -46,11 +46,14 @@ test: start_test_docker stop_dev
 
 stop_dev: _down_docker_dev _clean_makefile
 
+
+stop_prod: _down_docker_prod _clean_makefile
+
 run_db:
-	docker-compose -f docker-compose.dev.yml up --build postgres
+	docker-compose -f docker-compose.dev.yml up --build -d postgres
 
 start_test_docker:
-	docker-compose -f docker-compose.dev.yml run --rm -e CONF_PATH=/code/config/config.dev.yml ub_backend pytest -v tests/ -x
+	docker-compose -f docker-compose.dev.yml run --rm -e SQLALCHEMY_WARN_20=1 -e CONF_PATH=/code/config/config.dev.yml ub_backend pytest -v ./tests/$$n -x
 
 clean_images:
 	docker image prune -a -f
@@ -72,3 +75,6 @@ downgrade_dev:
 
 downgrade_prod:
 	docker-compose -f docker-compose.prod.yml run --rm -e CONF_PATH=/code/config/config.prod.yml ub_backend bash -c "cd ub_backend && alembic downgrade -1"
+
+ls:
+	docker-compose -f docker-compose.dev.yml run --rm ub_backend ls -la

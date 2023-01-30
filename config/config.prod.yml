@@ -1,1 +1,24 @@
 enviroment: prod
+
+profile:
+  title: backend-app
+  description: UncleBeso's ECommerce backend app
+  version: 0.1.0
+
+postgres:
+  host: mel.db.elephantsql.com
+  port: 5432
+  user: lbwupqcp
+  password: sJWU86WQsZT9WCv5WH2AX_Bt1WgCnjF-
+  db_name: lbwupqcp
+
+jwt:
+  secret: 4b6c67a7-3920-47b2-b9ce-7156486f8448
+  access_expiration_time: 20
+  refresh_expiration_time: 3600
+  prefix: Bearer
+
+telegram:
+  bot_token: 5457475957:AAH2zwjD9m4FcyFEwomCELOwOvl0N2KxTmE
+  alert_order_create_chats:
+    - 552934067

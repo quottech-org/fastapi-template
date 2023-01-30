@@ -1,4 +1,4 @@
-from order_type import OrderType
+from .order_type import OrderType
 
 
 __all__ = [

@@ -14,10 +14,9 @@ class DBOrder(UUIDMixin, CreateUpdateMixin, Base):
     client_id = Column(
         UUID(as_uuid=True),
         ForeignKey("user.id", ondelete="CASCADE"),
-        nullable=True,
+        nullable=False,
     )
     comment = Column(String, nullable=True)
     type = Column(Enum(OrderType), nullable=False)
     delivery_lon = Column(Float, nullable=True)
     delivery_lat = Column(Float, nullable=True)
-    
