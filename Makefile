@@ -32,7 +32,7 @@ _down_docker_prod:
 clean:
 	docker volume prune
 
-run_prod
+run_prod:
 	docker-compose -f docker-compose.prod.yml up -d 
 
 build_prod:
