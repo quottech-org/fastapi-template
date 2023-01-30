@@ -16,4 +16,4 @@ RUN poetry config virtualenvs.create false
 RUN poetry install --no-root --no-interaction --no-ansi -vvv
 
 
-CMD gunicorn --reload --bind 0.0.0.0:8000 -w 1 -k uvicorn.workers.UvicornWorker main:app
+CMD gunicorn --reload --bind 0.0.0.0:8000 -w 1 -k uvicorn.workers.UvicornWorker ub_backend.main:app
