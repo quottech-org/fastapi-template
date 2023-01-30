@@ -32,7 +32,7 @@ _down_docker_prod:
 clean:
 	docker volume prune
 
-run_prod:
+run_prod
 	docker-compose -f docker-compose.prod.yml up -d 
 
 build_prod:
@@ -45,6 +45,7 @@ build_dev:
 test: start_test_docker stop_dev
 
 stop_dev: _down_docker_dev _clean_makefile
+
 
 stop_prod: _down_docker_prod _clean_makefile
 

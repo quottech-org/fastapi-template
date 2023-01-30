@@ -66,6 +66,7 @@ def run_migrations_online() -> None:
 
     """
     if app_config.postgres.uri_postgresql:
+        app_config.postgres.host = "host.docker.internal"
         config.set_main_option(
             "sqlalchemy.url",
             f"{app_config.postgres.uri_postgresql}/{app_config.postgres.db_name}",

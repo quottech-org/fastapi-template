@@ -20,4 +20,3 @@ class DBOrder(UUIDMixin, CreateUpdateMixin, Base):
     type = Column(Enum(OrderType), nullable=False)
     delivery_lon = Column(Float, nullable=True)
     delivery_lat = Column(Float, nullable=True)
-    
